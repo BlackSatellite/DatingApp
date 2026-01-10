@@ -12,16 +12,16 @@ namespace API.Helpers
         {
             CreateMap<AppUser, MemberDto>()
                 .ForMember(dest => dest.Age,
-                    opt => opt
-                            .MapFrom(src => 
+                    opt => 
+                        opt.MapFrom(src => 
                                 src.DateOfBirth.CalculateAge()))
                 .ForMember(dest => dest.PhotoUrl,
-                    opt => opt
-                            .MapFrom(src => 
-                                src.Photos
-                                    .FirstOrDefault(p => p.IsMain)!.Url));
+                    opt => 
+                        opt.MapFrom(src => 
+                                src.Photos.FirstOrDefault(p => p.IsMain)!.Url));
             
             CreateMap<Photo, PhotoDto>();
+            CreateMap<MemberUpdateDto, AppUser>();
         }
     }
 }
